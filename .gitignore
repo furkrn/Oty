@@ -1,0 +1,25 @@
+# Current bot configuration file
+config.json
+
+# Bin & Obj & Properties for the project
+bin/
+obj/
+
+# fakesharper results
+inspectcode.xml
+
+# Test results
+TestResults/
+
+# Hidden folders
+.vs/
+.netcoredbg_hist
+.nuget/
+
+# User configuration
+*.csproj.user
+
+# Database Things
+*.db
+*.db-shm
+*.db-wal

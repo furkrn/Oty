@@ -1,0 +1,35 @@
+﻿[*.cs]
+
+# S3903: Types should be defined in named namespaces
+dotnet_diagnostic.S3903.severity = silent
+
+roslynator_analyzers.enabled_by_default = suggestion
+
+resharper_check_namespace_highlighting = silent
+
+resharper_unused_type_global_highlighting = silent
+
+resharper_unused_auto_property_accessor_global_highlighting = silent
+
+resharper_not_null_member_is_not_initialized_highlighting = silent
+
+resharper_assign_null_to_not_null_attribute_highlighting = silent
+
+resharper_constant_null_coalescing_conidition_highlighting = silent
+
+resharper_unused_member_global_highlighting = silent
+
+resharper_condition_is_always_true_or_false_highlighting = silent
+
+resharper_redundant_attribute_usage_property_highlighting = silent
+
+resharper_arrange_accessor_owner_body_highlighting = silent
+
+resharper_access_to_static_member_via_derived_type_highlighting = silent
+
+resharper_redundant_nullable_flow_attribute_highlighting = silent
+
+resharper_possible_multiple_enumeration_highlighting = silent
+
+resharper_suspicious_type_conversion_global_highlighting = silent
+
