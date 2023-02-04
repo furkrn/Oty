@@ -1,0 +1,1 @@
+namespace Oty.Bot.Addons.CommandLib;

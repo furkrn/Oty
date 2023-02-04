@@ -1,0 +1,256 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Oty 0.1\n"
+"Report-Msgid-Bugs-To: sup   \n"
+"Last-Translator: Eurk\n"
+"Language: tr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+# Oty.Bot.Events.GuildCreatedEvent
+msgctxt "WelcomeGuildTitle"
+msgid "Welcome, to configure bot for your guild, please use **/addons manage** command."
+msgstr "Hoş geldiniz, bu botu sunucunuza göre ayarlamak için **/eklentiler yönet** komutunu kullanın."
+
+# Oty.Bot.Events.GuildCreatedEvent
+msgctxt "WelcomeOldGuildTitle"
+msgid "Welcome back old friend, I think you knew but to configure modules please use **/addons manage** command."
+msgstr "Tekrardan hoş geldin eski dost, Sanırım sen biliyordun ama eklentileri ayarlamak için lütfen **/eklentiler yönet** konutunu kullanın."
+
+# Oty.Bot.Events.GuildCreatedEvent
+msgid "Has more bots than members."
+msgstr "Üyeden çok bot var."
+
+# Oty.Bot.Events.GuildCreatedEvent
+msgid "Has less than {0} members."
+msgstr "{0} üyeden az üyesi var."
+
+# Oty.Bot.Infastructure.GuildRequirements
+msgid "⚠️ Your guild didn't meet following requirement :"
+msgid_plural "⚠️ Your guild didn't meet following requirements :"
+msgstr[0] "⚠️ Sunucunuz aşağıdaki koşulu karşılamadı :"
+msgstr[1] "⚠️ Sunucunuz aşağıdaki koşulları karşılamadı : "
+
+# Oty.Bot.Infastructure.GuildRequirements
+msgctxt "GuildRequirementsFailContent"
+msgid "Sorry to say but 😢 ..."
+msgstr "Bunun için üzgünüm ama 😢 ..."
+
+# Oty.Bot.Infastructure.GuildRequirements
+msgid "Oty_Left_Guild"
+msgstr "Oty_Sunucudan_Ayrıldı"
+
+# Oty.Bot.SharedTranslation
+msgctxt "BanEmbedTitle"
+msgid "❌ You are banned from using this bot. Use /support for seeing support server."
+msgstr "❌ Bu botun kullanımından yasaklandınız. /destek komutunu kullanarak destek sunucumuzu görebilirsiniz."
+
+# Oty.Bot.SharedTranslation
+msgctxt "BanEmbedDescription"
+msgid "Reason : {0} \n Your ban will be lifted on {1}"
+msgstr "Nedeni : {0} \n Yasağınız {1} olduğu zaman kalkacaktır"
+
+# Oty.Bot.SharedTranslation
+msgctxt "NoReason"
+msgid "No reason specified"
+msgstr "Bir neden belirtilmemiş"
+
+# Oty.Bot.SharedTranslation
+msgid "Agree"
+msgstr "Onayla"
+
+# Oty.Bot.SharedTranslation
+msgctxt "TosEmbedDescription"
+msgid "🤖 To start using this bot, you have to agree our [Terms of Service](https://www.example.com) by clicking the '✅Agree' button below. If you don't want too agree, you can close this message."
+msgstr "🤖 Bu botu kullanmaya başlamak için [Servis Koşullarımızı](https://www.example.com) aşağıdaki '✅Onayla' butonuna basarak kabul etmelisiniz. Eğer onaylamak istemiyorsanız ise bu mesajı kapatabilirsiniz."
+
+# Oty.Bot.Events.CommandFailedEvent
+msgid "An internal error occured!"
+msgstr "Dahili bir hata oluştu!"
+
+# Oty.Bot.Events.CommandFailedEvent
+msgid "Error was occurred after response:"
+msgstr "Yanıt sonrası hata oluştu:"
+
+# Oty.Bot.Infastructure.LimitedExecutor
+msgctxt "LimitedMessageContent"
+msgid "⏲️ Limit for this command has exceedded, please try again {0} after."
+msgstr "⏲️ Bu komut için olan limitin sınırı aşılmıştır, lütfen {0} sonra deneyin."
+
+# Oty.Bot.InternalModules.BaseDataDeletionPrivacyModule
+msgid "Confirm deletion?"
+msgstr "Silmeyi onayla?"
+
+# Oty.Bot.InternalModules.BaseDataDeletionPrivacyModule
+msgid "Accept and delete the related data"
+msgstr "Onayla ve ilişkili verileri sil"
+
+# Oty.Bot.InternalModules.BaseDataDeletionPrivacyModule
+msgctxt "ConfirmationDescription"
+msgid "ℹ Datas you are deleting is required for validation. We store your community's or your user id just for validation. \n ⚠️ Removing these data will make you unvalidated and will ask you to validate yourself again. Proceed with the button below?"
+msgstr "ℹ Silmeye çalıştığınız veriler doğrulama içindir. Biz topluluğunuzun veya kullanıcı idnizi sadece doğrulama için depolarız. \n ⚠️ Bu verileri kaldırmak sizi doğrulanmamış yaparak sizin doğrulama yapmazını tekrar isteyecektir. Aşağıdaki tuş ile devam edecek misin?"
+
+# Oty.Bot.InternalModules.BaseDataRequestPrivacyModule
+msgid "Your data is here:"
+msgstr "Verileriniz burada:"
+
+# Oty.Bot.InternalModules.HelpModule
+msgid "help"
+msgstr "yardım"
+
+# Oty.Bot.InternalModules.HelpModule
+msgid "Get help! NOW!"
+msgstr "Yardım Al! ŞİMDİ!"
+
+# Oty.Bot.InternalModules.HelpModule
+msgctxt "HelpModuleEmbedDescription"
+msgid "Hello, there. Looks like you need help. Best way I can help you about usages is my documentation bellow. \n [📃You can click this link for reading all of my documententions related to my features.](https://www.example.com)"
+msgstr "Merhaba. Görünüşe göre yardıma ihtiyacın var. Kullanımlar hakkında en iyi yardımım aşağıdaki makallelerimdir. \n [📃Bu linke tıklayarak tüm özelliklerime dayalı belgeleri okuyabilirsin.](https://www.example.com)"
+
+# Oty.Bot.InternalModules.PingModule
+msgid "ping"
+msgstr "ping"
+
+# Oty.Bot.InternalModules.PingModule
+msgid "Wanna play some ping pong?"
+msgstr "Biraz ping pong oynayalım mı?"
+
+# Oty.Bot.InternalModules.PingModule
+msgctxt "PingInteractionContent"
+msgid "🏓🏓🏓 {0} ms!"
+msgstr "🏓🏓🏓 {0} ms!"
+
+# Oty.Bot.InternalModules.PrivacyModule
+msgid "privacy"
+msgstr "gizlilik"
+
+# Oty.Bot.InternalModules.PrivacyModule
+msgid "Your privacy matters."
+msgstr "Gizliliğiniz önemlidir."
+
+# Oty.Bot.InternalModules.PrivacyModule+UserDataPrivacyModule
+msgid "mydata"
+msgstr "benimverim"
+
+# Oty.Bot.InternalModules.PrivacyModule+UserDataPrivacyModule
+msgid "Shows what is my data looks like"
+msgstr "Benim verimin nasil olduğunu gösterir"
+
+# Oty.Bot.InternalModules.PrivacyModule+GuildDataPrivacyModule
+msgid "guilddata"
+msgstr "sunucuverisi"
+
+# Oty.Bot.InternalModules.PrivacyModule+GuildDataPrivacyModule
+msgid "Sees what data collected from guild"
+msgstr "Sunucudan toplanan verileri gösterir"
+
+# Oty.Bot.InternalModules.PrivacyModule+DataDeletionPrivacyModule
+msgid "delete"
+msgstr "sil"
+
+# Oty.Bot.InternalModules.PrivacyModule+DataDeletionPrivacyModule
+msgid "Delete data related to me or my community"
+msgstr "Bana bağlı veya sunucuma bağlı verileri sil"
+
+# Oty.Bot.InternalModules.PrivacyModule+DataDeletionPrivacyModule+UserDataDeletionPrivacyModule
+msgid "user"
+msgstr "kullanıcı"
+
+# Oty.Bot.InternalModules.PrivacyModule+DataDeletionPrivacyModule+UserDataDeletionPrivacyModule
+msgid "Delete my data"
+msgstr "Benim verilerimi sil"
+
+# Oty.Bot.InternalModules.PrivacyModule+DataDeletionPrivacyModule+GuildDataDeletionPrivacyModule
+msgid "guild"
+msgstr "sunucu"
+
+# Oty.Bot.InternalModules.PrivacyModule+DataDeletionPrivacyModule+GuildDataDeletionPrivacyModule
+msgid "Delete my community's data"
+msgstr "Benim topluğumun verilerini sil"
+
+# Oty.Bot.InternalModules.PrivacyModule+DataDeletionPrivacyModule+GuildDataDeletionPrivacyModule
+msgctxt "LeaveButtonText"
+msgid "Leave"
+msgstr "Ayrıl"
+
+# Oty.Bot.InternalModules.PrivacyModule+DataDeletionPrivacyModule+GuildDataDeletionPrivacyModule
+msgctxt "GuildRemovalQuestionTitle"
+msgid "⚠️ Also make me leave from that server?"
+msgstr "⚠️ Ayrıca beni sunucudan çıkarmak ister misin?"
+
+# Oty.Bot.InternalModules.PrivacyModule+DataDeletionPrivacyModule+GuildDataDeletionPrivacyModule
+msgctxt "GuildRemovalQuestionDescription"
+msgid "⚠️ Data you are deleting is required for validation and this will put you in unvalidated state and to make you unvalidated and for this the bot must leave from your server. Are you sure to proceed?"
+msgstr "⚠️ Kaldırmaya çalıştığınız veriler onaylama içindir ve bunları kaldırmak sizi doğrulanmamış durumuna getirecektir ve bunun için de bot sunucudan çıkacaktır. Devam etmek istediğinize emin misiniz? "
+
+# Oty.Bot.InternalModules.PrivacyModule+DataDeletionPrivacyModule+GuildDataDeletionPrivacyModule
+msgctxt "GuildRemovedDescription"
+msgid "Your guild is now removed, nice to meet you and goodbye!"
+msgstr "Sunucunuz kaldırılmıştır, tanıştığıma memnun oldum ve görüşürüz!"
+
+# Oty.Bot.InternalModules.PrivacyModule+DataDeletionPrivacyModule+GuildDataDeletionPrivacyModule
+msgctxt "GuildDeletionNotInGuild"
+msgid "❌ You need to be in a guild to perform this action"
+msgstr "❌ Bu işlemi yapabilmek için bir sunucuda olmalısınız."
+
+# Oty.Bot.InternalModules.PrivacyModule+DataDeletionPrivacyModule+GuildDataDeletionPrivacyModule
+msgctxt "GuildDeletionNoPermission"
+msgid "❌ You don't have permissions to perform this action. Required permission is Manage Guild."
+msgstr "❌ Bu işleme yapabilmek için izniniz yok. Sunucuları yönet izni gerekmektedir."
+
+# Oty.Bot.InternalModules.PrivacyModule+DataDeletionPrivacyModule+UserDataDeletionPrivacyModule
+msgctxt "NoUserDataDescription"
+msgid "You are not a verified user, you have no data to remove."
+msgstr "Doğrulanmış kullanıcı değilsiniz, kaldırılacak bir veriniz yoktur."
+
+# Oty.Bot.InternalModules.PrivacyModule+DataDeletionPrivacyModule+UserDataDeletionPrivacyModule
+msgctxt "BannedUserDataDescription"
+msgid "You can only delete *validation data* when your ban is lifted, your ban will be lifted on {0}."
+msgstr "*Doğrulama verilerinizi* sadece yasağınız kaldırıldığında silebilirsiniz, yasağınız {0} olduğunda kaldırılacaktır."
+
+# Oty.Bot.InternalModules.PrivacyModule+DataDeletionPrivacyModule+UserDataDeletionPrivacyModule
+msgctxt "UserDataRemovedDescription"
+msgid "Your user data has been removed successfully. You will be asked for validation for executing commands next time."
+msgstr "Kullanıcı verileriniz başarıyla kaldırıldı. Sonraki zamanlarda komut çalıştırmak için sizden doğrulama istenecektir."
+
+# Oty.Bot.InternalModules.PrivacyModule+GuildDataPrivacyModule
+msgctxt "DataRequestNotInGuild"
+msgid "❌ You need to be in guild to perform this action."
+msgstr "❌ Bu işlemi yapabilmek için bir sunucuda olmalısınız."
+
+# Oty.Bot.InternalModules.ReportModule
+msgid "report"
+msgstr "raporla"
+
+# Oty.Bot.InternalModules.ReportModule
+msgid "Report Abuse"
+msgstr "Kötü kullanımı raporla"
+
+# Oty.Bot.InternalModules.ReportModule
+msgid "Uh! You thingy... Give it to me"
+msgstr "Ah! O şey... Bana ver onu"
+
+# Oty.Bot.InternalModules.ReportModule
+msgctxt "ReportModuleOption"
+msgid "module"
+msgstr "modül"
+
+# Oty.Bot.InternalModules.SupportModule
+msgctxt "PingInteractionGuildEmbedDescription"
+msgid "Unfortunately, Oty is not supported on PMs. Maybe soon..."
+msgstr "Maalesef, Oty özel mesajlarda destekli değil. Belki çok yakında..."
+
+# Oty.Bot.InternalModules.SupportModule
+msgid "support"
+msgstr "destek"
+
+# Oty.Bot.InternalModules.SupportModule
+msgid "You want help with us? Sure."
+msgstr "Bizden yardım mı istiyorsun? Elbette."
+
+# Oty.Bot.InternalModules.SupportModule
+msgctxt "SupportEmbedDescription"
+msgid "You can join my [support server by clicking here]({0})."
+msgstr "Benim [destek sunucuma buraya tıklayarak]({0}) katılım sağlayabilirsin."

@@ -1,0 +1,14 @@
+{
+  "BotConfiguration": {
+    "SecretToken": "OMFG NO TOKEN HERE...",
+    "ShardCount": 1,
+    "SpecialGuildId": 0,
+    "BotSupportServerId": 0,
+    "Activity": "Nothing",
+    "ActivityStatus": "Playing",
+    "UserStatus": "Online",
+    "MinimumMemberRequirement": 1,
+    "SupportInvite": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    "ConnectionString": "./Oty.db"
+  }
+}
