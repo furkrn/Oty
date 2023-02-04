@@ -1,27 +1,5 @@
 ﻿const string configurationFileName = "config.json";
 
-if (!File.Exists(configurationFileName))
-{
-    var config = new
-    {
-        BotConfiguration = new BotConfiguration(),
-    };
-
-    var jsonSettings = new JsonSerializerOptions()
-    {
-        WriteIndented = true,
-    };
-
-    string content = JsonSerializer.Serialize(config, jsonSettings);
-    File.WriteAllText(configurationFileName, content, new UTF8Encoding(false));
-
-    Console.ForegroundColor = ConsoleColor.Yellow;
-    Console.WriteLine("New configuration file created successfully");
-    Console.ReadKey();
-
-    return;
-}
-
 #if DEBUG
 var level = LogLevel.Debug;
 #else
