@@ -35,7 +35,8 @@ var hostBuilder = Host.CreateDefaultBuilder(args)
             .AddScoped<IUserRepository, UserRepository>();
 
         services.AddSingleton<IAddonPublisher, InteractionCommandAddonPublisher>()
-            .AddSingleton<IAddonServiceFactory, AddonServiceFactory>();
+            .AddSingleton<IAddonServiceFactory, AddonServiceFactory>()
+            .AddSingleton<IGuildGetterExpressionCache, GuildGetterExpressionCache>();
 
         services.AddCommands(builder => builder
             .AddModule<HelpModule>(LimitedCommandMetadataProvider.DefaultFactory)
