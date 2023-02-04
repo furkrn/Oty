@@ -1,7 +1,4 @@
-﻿using JetBrains.Annotations;
-using DSharpPlus.Entities;
-
-namespace Oty.Interactivity;
+﻿namespace Oty.Interactivity;
 
 /// <summary>
 /// Provides configuration for <see cref="OtyInteractivity"></see>

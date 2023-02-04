@@ -1,0 +1,13 @@
+global using DSharpPlus;
+global using DSharpPlus.Entities;
+global using DSharpPlus.EventArgs;
+global using JetBrains.Annotations;
+global using Oty.Interactivity.Entities;
+global using Oty.Interactivity.Handlers;
+global using System;
+global using System.Collections.Concurrent;
+global using System.Collections.Generic;
+global using System.Diagnostics.CodeAnalysis;
+global using System.Linq;
+global using System.Threading;
+global using System.Threading.Tasks;

@@ -1,7 +1,5 @@
-﻿using DSharpPlus.EventArgs;
-using System.Collections.Generic;
+﻿namespace Oty.Interactivity;
 
-namespace Oty.Interactivity;
 public interface IInteractivityInteraction
 {
     public bool IsExecuted { get; }

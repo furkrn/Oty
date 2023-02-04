@@ -1,10 +1,4 @@
-﻿using DSharpPlus.Entities;
-using DSharpPlus.EventArgs;
-using JetBrains.Annotations;
-using System;
-using System.Threading.Tasks;
-
-namespace Oty.Interactivity.Entities;
+﻿namespace Oty.Interactivity.Entities;
 
 /// <summary>
 /// Builder class for building click-based component interactions.

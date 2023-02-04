@@ -1,12 +1,4 @@
-﻿using DSharpPlus;
-using DSharpPlus.Entities;
-using DSharpPlus.EventArgs;
-using Oty.Interactivity.Entities;
-using System;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Oty.Interactivity.Handlers;
+﻿namespace Oty.Interactivity.Handlers;
 
 internal sealed class ComponentWaiter : InteractivityHandler<ClickInteractivityRequest, ComponentInteractionCreateEventArgs>, IDisposable
 {

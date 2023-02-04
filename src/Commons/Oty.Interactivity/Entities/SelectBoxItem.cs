@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Oty.Interactivity.Entities;
+﻿namespace Oty.Interactivity.Entities;
 
 public readonly struct SelectBoxItem
 {

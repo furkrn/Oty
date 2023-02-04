@@ -1,11 +1,3 @@
-using DSharpPlus;
-using DSharpPlus.EventArgs;
-using Oty.Interactivity.Entities;
-using System;
-using System.Collections.Concurrent;
-using System.Threading;
-using System.Threading.Tasks;
-
 namespace Oty.Interactivity.Handlers;
 
 internal abstract class InteractivityHandler<TRequest, TEvent>

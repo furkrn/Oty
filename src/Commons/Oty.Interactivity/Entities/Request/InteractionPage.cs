@@ -1,6 +1,4 @@
-﻿using DSharpPlus.Entities;
-
-namespace Oty.Interactivity.Entities;
+﻿namespace Oty.Interactivity.Entities;
 
 public sealed class InteractionPage
 {

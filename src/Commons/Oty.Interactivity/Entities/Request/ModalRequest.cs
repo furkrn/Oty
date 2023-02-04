@@ -1,7 +1,3 @@
-using DSharpPlus.Entities;
-using JetBrains.Annotations;
-using System;
-
 namespace Oty.Interactivity.Entities;
 
 [PublicAPI]

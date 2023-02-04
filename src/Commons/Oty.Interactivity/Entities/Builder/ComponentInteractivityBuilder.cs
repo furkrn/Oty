@@ -1,10 +1,3 @@
-using DSharpPlus;
-using DSharpPlus.Entities;
-using DSharpPlus.EventArgs;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
 namespace Oty.Interactivity.Entities;
 
 public sealed class ComponentInteractivityBuilder

@@ -1,10 +1,3 @@
-using DSharpPlus;
-using DSharpPlus.EventArgs;
-using Oty.Interactivity.Entities;
-using System;
-using System.Linq;
-using System.Threading.Tasks;
-
 namespace Oty.Interactivity.Handlers;
 
 internal sealed class ComponentInteractivityHandler : InteractivityHandler<ComponentInteractivityRequest, ComponentInteractionCreateEventArgs>, IDisposable

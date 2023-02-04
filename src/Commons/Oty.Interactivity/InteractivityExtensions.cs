@@ -1,8 +1,4 @@
-﻿using DSharpPlus;
-using DSharpPlus.Entities;
-using JetBrains.Annotations;
-
-namespace Oty.Interactivity;
+﻿namespace Oty.Interactivity;
 
 public static class InteractivityExtensions
 {

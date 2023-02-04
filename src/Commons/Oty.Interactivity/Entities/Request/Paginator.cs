@@ -1,10 +1,4 @@
-﻿using DSharpPlus;
-using DSharpPlus.EventArgs;
-using JetBrains.Annotations;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
-namespace Oty.Interactivity.Entities;
+﻿namespace Oty.Interactivity.Entities;
 
 [PublicAPI]
 public class Paginator

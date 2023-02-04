@@ -1,5 +1,3 @@
-using System.Threading.Tasks;
-
 namespace Oty.Interactivity.Entities;
 
 public abstract class InteractivityRequest

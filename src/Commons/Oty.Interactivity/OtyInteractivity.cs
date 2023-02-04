@@ -1,13 +1,4 @@
-﻿using DSharpPlus;
-using DSharpPlus.EventArgs;
-using JetBrains.Annotations;
-using Oty.Interactivity.Entities;
-using Oty.Interactivity.Handlers;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace Oty.Interactivity;
+﻿namespace Oty.Interactivity;
 
 /// <summary>
 /// Interactivity handler for Discord Interactions.

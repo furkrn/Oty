@@ -1,12 +1,3 @@
-using DSharpPlus;
-using DSharpPlus.Entities;
-using DSharpPlus.EventArgs;
-using JetBrains.Annotations;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Threading.Tasks;
-
 namespace Oty.Interactivity.Entities;
 
 [PublicAPI]

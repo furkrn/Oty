@@ -1,9 +1,4 @@
-﻿using DSharpPlus.Entities;
-using DSharpPlus.EventArgs;
-using System;
-using System.Threading.Tasks;
-
-namespace Oty.Interactivity.Entities;
+﻿namespace Oty.Interactivity.Entities;
 
 public sealed class ClickInteractivityRequest : InteractivityRequest
 {
