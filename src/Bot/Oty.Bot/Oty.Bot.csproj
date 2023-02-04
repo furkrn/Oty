@@ -39,10 +39,6 @@
 		<Content Include="config.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
-    <Content Include="Oty.db">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-	</ItemGroup>
 
 	<ItemGroup>
 	  <ProjectReference Include="..\..\Commons\Oty.Interactivity\Oty.Interactivity.csproj" />
