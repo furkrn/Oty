@@ -20,7 +20,8 @@ var hostBuilder = Host.CreateDefaultBuilder(args)
 
         services.ConfigureAsyncEventHandlers(c => c.AddEventHandler<DiscordClient, GuildCreateEventArgs, GuildCreatedEvent>()
             .AddEventHandler<DiscordClient, GuildCreateEventArgs, GuildAvaliableEvent>()
-            .AddEventHandler<IOtyCommandsExtension, CommandHandledEventArgs, CommandFailedEvent>());
+            .AddEventHandler<IOtyCommandsExtension, CommandHandledEventArgs, CommandFailedEvent>()
+            .AddAddonEvents());
 
         services.AddOptions<BotConfiguration>()
             .Bind(hostBuilder.Configuration.GetSection("BotConfiguration"))
