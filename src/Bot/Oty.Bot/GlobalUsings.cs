@@ -25,7 +25,6 @@ global using Oty.Bot.Addons.CommandLib.Checks;
 global using Oty.Bot.Addons.CommandLib.Publishers;
 global using Oty.Bot.Addons.CommandLib.Receiver;
 global using Oty.Bot.Addons.Events;
-global using Oty.Bot.Events;
 global using Oty.Bot.Commands;
 global using Oty.Bot.Core;
 global using Oty.Bot.Data;
