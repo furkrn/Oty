@@ -90,7 +90,7 @@ msgstr "Onayla ve ilişkili verileri sil"
 # Oty.Bot.InternalModules.BaseDataDeletionPrivacyModule
 msgctxt "ConfirmationDescription"
 msgid "ℹ Datas you are deleting is required for validation. We store your community's or your user id just for validation. \n ⚠️ Removing these data will make you unvalidated and will ask you to validate yourself again. Proceed with the button below?"
-msgstr "ℹ Silmeye çalıştığınız veriler doğrulama içindir. Biz topluluğunuzun veya kullanıcı idnizi sadece doğrulama için depolarız. \n ⚠️ Bu verileri kaldırmak sizi doğrulanmamış yaparak sizin doğrulama yapmazını tekrar isteyecektir. Aşağıdaki tuş ile devam edecek misin?"
+msgstr "ℹ Silmeye çalıştığınız veriler doğrulama içindir. Biz topluluğunuzun veya kullanıcı idnizi sadece doğrulama için depolarız. \n ⚠️ Bu verileri kaldırmak sizi doğrulanmamış yaparak sizin doğrulama yapmanızı tekrar isteyecektir. Aşağıdaki tuşa basarak ile devam edecek misin?"
 
 # Oty.Bot.InternalModules.BaseDataRequestPrivacyModule
 msgid "Your data is here:"
