@@ -10,8 +10,10 @@ public class FilteredGuildEvent<TSender, TArgs> : IAsyncEventHandler<TSender, TA
         this._expressionCache = expressionCache;
     }
 
-    public async Task ExecuteAsync(TSender sender, TArgs e)
+    public Task ExecuteAsync(TSender sender, TArgs e)
     {
+        throw new NotImplementedException();
 
+        // TODO : Publish to specific addons later.
     }
 }
