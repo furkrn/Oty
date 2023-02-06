@@ -12,8 +12,8 @@ public static class UserModelExtensions
             return new(true, user);
         }
 
-        var now = DateOnly.FromDateTime(DateTime.Now);
-        if (user.BanLiftTime < now)
+        var now = DateTime.Now;
+        if (user.BanLiftTime.GetValueOrDefault() > now)
         {
             return new(false, user);
         }

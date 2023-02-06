@@ -26,12 +26,21 @@ namespace Oty.Bot.Data.Migrations
                     b.Property<int>("GuildState")
                         .HasColumnType("INTEGER");
 
+                    b.Property<bool>("ContainsBot")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("RestrictionReason")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("AllowAppeals")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime?>("LiftTime")
                         .HasColumnType("TEXT");
 
                     b.HasKey("GuildId");
 
-                    b.ToTable("Guilds");
+                    b.ToTable("Guilds", (string)null);
                 });
 
             modelBuilder.Entity("Oty.Bot.Data.Models.InternalCommand", b =>
@@ -53,7 +62,7 @@ namespace Oty.Bot.Data.Migrations
 
                     b.HasKey("CommandType", "Name");
 
-                    b.ToTable("Commands");
+                    b.ToTable("Commands", (string)null);
                 });
 
             modelBuilder.Entity("Oty.Bot.Data.Models.User", b =>
@@ -65,7 +74,7 @@ namespace Oty.Bot.Data.Migrations
                     b.Property<string>("BanReason")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateOnly?>("BanLiftTime")
+                    b.Property<DateTime?>("BannedLiftTime")
                         .HasColumnType("TEXT");
 
                     b.Property<int>("UserState")
@@ -73,7 +82,7 @@ namespace Oty.Bot.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 #pragma warning restore 612, 618
         }

@@ -7,5 +7,11 @@ public sealed class Guild
 
     public required GuildStates GuildState { get; set; }
 
+    public required bool ContainsBot { get; set; }
+
     public string? RestrictionReason { get; set; }
+
+    public bool AllowAppeals { get; set; }
+
+    public DateTime? LiftTime { get; set; }
 }

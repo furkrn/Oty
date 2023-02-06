@@ -33,7 +33,10 @@ namespace Oty.Bot.Data.Migrations
                     GuildId = table.Column<ulong>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     GuildState = table.Column<int>(type: "INTEGER", nullable: false),
-                    RestrictionReason = table.Column<string>(type: "TEXT", nullable: true)
+                    ContainsBot = table.Column<bool>(type: "INTEGER", nullable: false),
+                    RestrictionReason = table.Column<string>(type: "TEXT", nullable: true),
+                    AllowAppeals = table.Column<bool>(type: "INTEGER", nullable: false),
+                    LiftTime = table.Column<DateTime>(type: "TEXT", nullable: true),
                 },
                 constraints: table =>
                 {
@@ -48,7 +51,7 @@ namespace Oty.Bot.Data.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     UserState = table.Column<int>(type: "INTEGER", nullable: false),
                     BanReason = table.Column<string>(type: "TEXT", nullable: true),
-                    BannedSince = table.Column<DateOnly>(type: "TEXT", nullable: true)
+                    BannedSince = table.Column<DateTime>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {

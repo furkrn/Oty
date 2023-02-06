@@ -20,6 +20,7 @@ var hostBuilder = Host.CreateDefaultBuilder(args)
 
         services.ConfigureAsyncEventHandlers(c => c.AddEventHandler<DiscordClient, GuildCreateEventArgs, GuildCreatedEvent>()
             .AddEventHandler<DiscordClient, GuildCreateEventArgs, GuildAvaliableEvent>()
+            .AddEventHandler<DiscordClient, GuildDeleteEventArgs, GuildLeftEvent>()
             .AddEventHandler<IOtyCommandsExtension, CommandHandledEventArgs, CommandFailedEvent>()
             .AddAddonEvents());
 

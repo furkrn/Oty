@@ -27,18 +27,18 @@ public class GuildAvaliableEvent : IAsyncEventHandler<DiscordClient, GuildCreate
         await using var scope = this._scopeFactory.CreateAsyncScope();
         await using var guildRepository = scope.ServiceProvider.GetRequiredService<IGuildRepository>();
 
-        var (guildRecord, hasGuild) = await guildRepository.HasGuildAsync(e.Guild.Id);
+        var (guildRecord, isNotBanned) = await guildRepository.TryLiftBan(e.Guild.Id);
 
-        if (!hasGuild)
+        if (isNotBanned)
         {
-            await this._guildCreatedEventArgs.ExecuteAsync(sender, e);
+            if (guildRecord is null)
+            {
+                await this._guildCreatedEventArgs.ExecuteAsync(sender, e);
+            }
         }
         else
         {
-            if (guildRecord!.GuildState is GuildStates.Restricted)
-            {
-                await e.Guild.LeaveAsync();
-            }
+            await e.Guild.LeaveAsync();
         }
     }
 }
