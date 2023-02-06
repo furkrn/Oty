@@ -14,5 +14,5 @@ public class User
     public string? BanReason { get; set; }
 
     [PublicAPI]
-    public DateOnly? BanLiftTime { get; set; }
+    public DateTime? BanLiftTime { get; set; }
 }
