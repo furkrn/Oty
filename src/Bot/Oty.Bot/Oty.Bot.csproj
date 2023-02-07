@@ -43,7 +43,6 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\..\Commons\Oty.Interactivity\Oty.Interactivity.csproj" />
-    <ProjectReference Include="..\..\Commons\Oty.EventBus\Oty.EventBus.csproj" />
     <ProjectReference Include="..\..\Commons\Oty.CommandLib.Interactions\Oty.CommandLib.Interactions.csproj" />
     <ProjectReference Include="..\..\Commons\Oty.Things\Oty.Things.csproj" />
     <ProjectReference Include="..\..\Commons\Oty.Things.Localization\Oty.Things.PoLocalization.csproj" />
