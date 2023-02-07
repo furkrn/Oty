@@ -20,7 +20,7 @@
 	<ItemGroup>
     <PackageReference Include="Grpc" Version="2.46.6" />
     <PackageReference Include="Humanizer" Version="2.14.1" />
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Scripting" Version="4.6.0-1.23068.3" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Scripting" Version="4.6.0-2.23106.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.2">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -43,7 +43,6 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\..\Commons\Oty.Interactivity\Oty.Interactivity.csproj" />
-    <ProjectReference Include="..\..\Commons\Oty.EventBus\Oty.EventBus.csproj" />
     <ProjectReference Include="..\..\Commons\Oty.CommandLib.Interactions\Oty.CommandLib.Interactions.csproj" />
     <ProjectReference Include="..\..\Commons\Oty.Things\Oty.Things.csproj" />
     <ProjectReference Include="..\..\Commons\Oty.Things.Localization\Oty.Things.PoLocalization.csproj" />
