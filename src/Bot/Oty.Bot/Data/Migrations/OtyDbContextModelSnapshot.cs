@@ -74,7 +74,7 @@ namespace Oty.Bot.Data.Migrations
                     b.Property<string>("BanReason")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime?>("BannedLiftTime")
+                    b.Property<DateTime?>("BanLiftTime")
                         .HasColumnType("TEXT");
 
                     b.Property<int>("UserState")

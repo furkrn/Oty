@@ -25,6 +25,11 @@ public class GuildCreatedEvent : IAsyncEventHandler<DiscordClient, GuildCreateEv
 
     public async Task ExecuteAsync(DiscordClient client, GuildCreateEventArgs e)
     {
+        if (e.Guild.Id == this._snapshot.Value.SpecialGuildId)
+        {
+            return;
+        }
+
         await using var scope = this._scopeFactory.CreateAsyncScope();
         await using var guildRepository = scope.ServiceProvider.GetRequiredService<IGuildRepository>();
 
