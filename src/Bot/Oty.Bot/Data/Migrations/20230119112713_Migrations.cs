@@ -51,7 +51,7 @@ namespace Oty.Bot.Data.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     UserState = table.Column<int>(type: "INTEGER", nullable: false),
                     BanReason = table.Column<string>(type: "TEXT", nullable: true),
-                    BannedSince = table.Column<DateTime>(type: "TEXT", nullable: true)
+                    BanLiftTime = table.Column<DateTime>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
