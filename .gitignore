@@ -16,6 +16,9 @@ TestResults/
 .netcoredbg_hist
 .nuget/
 
+# Also don't include vscode settings
+.vscode/
+
 # User configuration
 *.csproj.user
 
