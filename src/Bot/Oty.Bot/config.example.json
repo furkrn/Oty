@@ -3,6 +3,7 @@
     "SecretToken": "OMFG NO TOKEN HERE...",
     "ShardCount": 1,
     "SpecialGuildId": 0,
+    "ReportChannel": 0,
     "BotSupportServerId": 0,
     "Activity": "Nothing",
     "ActivityStatus": "Playing",

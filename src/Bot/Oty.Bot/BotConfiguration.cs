@@ -21,6 +21,11 @@ public class BotConfiguration
 
     [PublicAPI]
     [Required(AllowEmptyStrings = false)]
+    [Range(1, ulong.MaxValue)]
+    public ulong ReportChannel { get; set; }
+
+    [PublicAPI]
+    [Required(AllowEmptyStrings = false)]
     public ulong BotSupportServerId { get; set; }
 
     [PublicAPI]
