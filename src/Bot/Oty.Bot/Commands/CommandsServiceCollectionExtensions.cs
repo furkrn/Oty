@@ -20,6 +20,8 @@ public static class CommandsServiceCollectionExtensions
         serviceCollection.Configure<CommandsConfiguration>(config => config.RegisteredTypes = builder.Commands);
 
         serviceCollection.TryAddSingleton<ICommandsRegisterer, CommandsRegisterer>();
+        serviceCollection.TryAddSingleton<ICheckCollection, CheckCollection>();
+        serviceCollection.TryAddTransient(typeof(ICheckedRegistration<>), typeof(CheckedRegistration<>));
 
         return serviceCollection;
     }
