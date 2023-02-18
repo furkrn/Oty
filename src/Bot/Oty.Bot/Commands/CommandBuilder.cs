@@ -3,16 +3,25 @@ namespace Oty.Bot.Commands;
 [PublicAPI]
 public sealed class CommandsBuilder
 {
-    private readonly Dictionary<Type, Func<IServiceProvider, IMetadataProvider>> _commands = new();
+    private readonly Dictionary<Type, ModuleMetadataHelper> _commands = new();
 
-    public IReadOnlyDictionary<Type, Func<IServiceProvider, IMetadataProvider>> Commands => this._commands;
+    public IReadOnlyDictionary<Type, ModuleMetadataHelper> Commands => this._commands;
 
-    public CommandsBuilder AddModule<TModule>(Func<IServiceProvider, IMetadataProvider>? func = null)
+    public CommandsBuilder AddModule<TModule>(Func<IServiceProvider, IMetadataProvider>? func = null, IRegisteredCheck<TModule>? check = null)
         where TModule : BaseCommandModule, IMetadataCreatable
     {
-        func ??= services => new MetadataProvider(services); 
+        func ??= (serviceProvider) => new MetadataProvider(serviceProvider);
+        this._commands.Add(typeof(TModule), new(func, check));
 
-        this._commands.Add(typeof(TModule), func);
+        return this;
+    }
+
+    public CommandsBuilder AddCheck<TModule>(IRegisteredCheck<TModule> check)
+        where TModule : BaseCommandModule, IMetadataCreatable
+    {
+        ArgumentNullException.ThrowIfNull(check, nameof(check));
+
+        this._commands.Add(typeof(TModule), new(null, check));
 
         return this;
     }
