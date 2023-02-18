@@ -5,9 +5,12 @@ public sealed class ReportModule : BaseVerifiedCommandModule<SlashInteractionCon
 {
     //private readonly IStringLocalizer<ReportModule>? _localizer;
 
+    private readonly ICheckedRegistration<ReportModule> _execution;
+
     public ReportModule(SlashInteractionContext context) : base(context)
     {
         //this._localizer = context.RegisteredServices!.GetRequiredService<IStringLocalizer<ReportModule>>();
+        this._execution = context.RegisteredServices!.GetRequiredService<ICheckedRegistration<ReportModule>>();
     }
 
     public static BaseCommandMetadata CreateMetadata(IMetadataProvider metadataProvider)
@@ -28,6 +31,11 @@ public sealed class ReportModule : BaseVerifiedCommandModule<SlashInteractionCon
                     .WithAutoCompleteCommand(ModuleFinderAutoCompleteModule.ModuleName)
                     .LocalizeFrom<ReportModule>(metadataProvider, ln => ln["ReportModuleOption", TranslationFindingType.WithOnlyTextContext])))
             .LocalizeFrom(metadataProvider);
+    }
+
+    public override Task<bool> BeforeExecutionAsync()
+    {
+        return Task.FromResult(this._execution.CanExecute);
     }
 
     public override async Task ExecuteAsync(IReadOnlyDictionary<IMetadataOption, object?>? parameterCollection = null)
