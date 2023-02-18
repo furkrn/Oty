@@ -11,15 +11,18 @@ public class CommandsRegisterer : ICommandsRegisterer
 
     private readonly IServiceProvider _serviceProvider;
 
+    private readonly ICheckCollection _checkCollection;
+
     private readonly ConcurrentDictionary<int, (IOtyCommandsExtension Extension, bool IsClientReady)> _registeredExtensions = new();
 
     public CommandsRegisterer(IServiceScopeFactory factory, ILogger<CommandsRegisterer> logger, IOptions<CommandsConfiguration> configuration,
-        IServiceProvider serviceProvider)
+        IServiceProvider serviceProvider, ICheckCollection checkCollection)
     {
         this._scopeFactory = factory;
         this._logger = logger;
         this._configuration = configuration.Value;
         this._serviceProvider = serviceProvider;
+        this._checkCollection = checkCollection;
     }
 
     // resharper disable SuspiciousTypeConversion.Global
@@ -44,11 +47,32 @@ public class CommandsRegisterer : ICommandsRegisterer
         }
 
         await Task.WhenAll(this._configuration.RegisteredTypes
-            .Select(kp => extension.RegisterCommandAsync(kp.Key, kp.Value(this._serviceProvider))));
+            .Select(RegisterModuleAsync));
 
         extension.CommandAdded += this.OnCommandRegistration;
         extension.CommandUpdated += this.OnCommandUpdate;
         extension.CommandRemoved += this.OnCommandRemove;
+
+        Task<bool> RegisterModuleAsync(KeyValuePair<Type, ModuleMetadataHelper> keyValuePair)
+        {
+            var (moduleType, moduleHelper) = keyValuePair;
+
+            return extension.RegisterCommandAsync(moduleType, moduleHelper.MetadataProviderFactory!(this._serviceProvider));
+        }
+    }
+
+    private async Task CheckAndAddResultsAsync(DiscordClient client)
+    {
+        foreach (var (moduleType, metadataHelper) in this._configuration.RegisteredTypes
+            .Where(c => c.Value.Check is not null))
+        {
+            bool? result = await metadataHelper.Check!.CheckAsync(client, this._serviceProvider);
+
+            if (result.HasValue)
+            {
+                this._checkCollection.AddResult(moduleType, result.Value);
+            }
+        }
     }
 
     // resharper disable once AccessToDisposedClosure
@@ -75,6 +99,8 @@ public class CommandsRegisterer : ICommandsRegisterer
 
         _ = Task.Run(async () =>
         {
+            await this.CheckAndAddResultsAsync(sender);
+
             await using var scope = this._scopeFactory.CreateAsyncScope();
             await using var repository = scope.ServiceProvider.GetRequiredService<IInternalCommandRepository>();
 
@@ -197,12 +223,26 @@ public class CommandsRegisterer : ICommandsRegisterer
 
         var command = await repository.GetAsync(publishable.Name, publishable.CommandType);
 
+        ulong id;
         if (command is null)
         {
+            var pu = publishable.ToDiscordCommand();
+
+            var moduleCreationTask = publishable.RegisteredGuildId is not (0 or null)
+                ? sender.Client.CreateGuildApplicationCommandAsync(publishable.RegisteredGuildId.Value, pu)
+                : sender.Client.CreateGlobalApplicationCommandAsync(pu);
+
+            var createdCommand = await moduleCreationTask;
+            id = createdCommand.Id;
+
             return;
         }
+        else
+        {
+            id = command.Id;
+        }
 
-        publishable.Id = command.Id;
+        publishable.Id = id;
     }
 
     private Task OnCommandUpdate(IOtyCommandsExtension sender, UpdatedCommandEventArgs e)
@@ -269,7 +309,7 @@ public class CommandsRegisterer : ICommandsRegisterer
                 });
 
                 await repository.UnitOfWork.SaveChangesAsync();
-        });
+            });
 
         return Task.CompletedTask;
     }
