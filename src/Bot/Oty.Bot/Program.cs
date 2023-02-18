@@ -46,7 +46,7 @@ var hostBuilder = Host.CreateDefaultBuilder(args)
             .AddModule<OwnerEvalModule>()
             .AddModule<SupportModule>(LimitedCommandMetadataProvider.DefaultFactory)
             .AddModule<AddonManager>(LimitedCommandMetadataProvider.DefaultFactory)
-            .AddModule<ReportModule>(LimitedCommandMetadataProvider.DefaultFactory)
+            .AddModule<ReportModule>(LimitedCommandMetadataProvider.DefaultFactory, new ReportModuleCheck())
             .AddModule<PrivacyModule>(LimitedCommandMetadataProvider.DefaultFactory)
             .AddModule<ModuleFinderAutoCompleteModule>());
 
