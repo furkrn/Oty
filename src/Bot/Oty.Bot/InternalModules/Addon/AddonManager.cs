@@ -51,6 +51,13 @@ public sealed partial class AddonManager : BaseVerifiedCommandModule<SlashIntera
                     .WithDefaultValue(null)
                     .WithType<string>()
                     .WithMetadata(ApplicationCommandOptionType.String, mpb => mpb.WithName("addon")
-                        .WithDescription("Addon to manage"))));
+                        .WithDescription("Addon to manage"))))
+            .AddSubcommand<CreateAddonModule>(createAddonBuilder => createAddonBuilder.WithName("create")
+                .WithDescription("Creates an addon using interactions")
+                .AddOption(opb => opb.WithName("import")
+                    .WithDefaultValue(null)
+                    .WithType<DiscordAttachment>()
+                    .WithMetadata(ApplicationCommandOptionType.Attachment, mpb => mpb.WithName("import")
+                        .WithDescription("Import an already made command."))));
     }
 }
