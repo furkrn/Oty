@@ -4,7 +4,14 @@ public sealed class ComponentInteractivityBuilder
 {
     private readonly Dictionary<ComponentInteractivityRequest.ComponentKey, ComponentInteractivityRequest.ComponentInteractivityInvoker?> _targets = new();
 
+    private readonly MessageComponents? _components;
+
     private DiscordMessage _message;
+    
+    public ComponentInteractivityBuilder(MessageComponents? components = null)
+    {
+        this._components = components;
+    }
 
     public bool IsRepeative { get; set; }
 
@@ -51,7 +58,14 @@ public sealed class ComponentInteractivityBuilder
     {
         ArgumentNullException.ThrowIfNull(builder);
 
-        return this.AddTargetComponents(builder().Build()); 
+        return this.AddTargetComponents(builder().Build(this._components)); 
+    }
+
+    public ComponentInteractivityBuilder FromSubBuilder(IComponentCommandBuilder builder)
+    {
+        ArgumentNullException.ThrowIfNull(builder, nameof(builder));
+
+        return this.AddTargetComponents(builder.Build(this._components));
     }
 
     public ComponentInteractivityBuilder AddTargetComponent(DiscordComponent component, Func<ComponentInteractionCreateEventArgs, Task>? invoker)

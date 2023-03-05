@@ -77,7 +77,7 @@ public sealed class ComponentPaginatorSubBuilder<TSource> : IComponentCommandBui
         return this;
     }
 
-    public IEnumerable<KeyValuePair<ComponentInteractivityRequest.ComponentKey, ComponentInteractivityRequest.ComponentInteractivityInvoker?>> Build()
+    public IEnumerable<KeyValuePair<ComponentInteractivityRequest.ComponentKey, ComponentInteractivityRequest.ComponentInteractivityInvoker?>> Build(MessageComponents? components)
     {
         if (this._selector == null)
         {
