@@ -5,7 +5,7 @@ public sealed class ComponentRadioButtonSubBuilder : IComponentCommandBuilder
 {
     private readonly List<DiscordComponent> _components = new();
     
-    private Func<IReadOnlyList<DiscordComponent>, IDiscordMessageBuilder, int, RadioButtonHandler> _factory = (l, m, i) => new(l, m, i);
+    private Func<IReadOnlyList<DiscordComponent>, IDiscordMessageBuilder, int, IRadioButtonHandler> _factory = (l, m, i) => new RadioButtonHandler(l, m, i);
 
     [PublicAPI]
     public ComponentRadioButtonSubBuilder()
@@ -79,7 +79,7 @@ public sealed class ComponentRadioButtonSubBuilder : IComponentCommandBuilder
     }
 
     [PublicAPI]
-    public ComponentRadioButtonSubBuilder WithHandlerFactory(Func<IReadOnlyList<DiscordComponent>, IDiscordMessageBuilder, int, RadioButtonHandler> factory)
+    public ComponentRadioButtonSubBuilder WithHandlerFactory(Func<IReadOnlyList<DiscordComponent>, IDiscordMessageBuilder, int, IRadioButtonHandler> factory)
     {
         ArgumentNullException.ThrowIfNull(factory, nameof(factory));
         this._factory = factory;

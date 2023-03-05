@@ -1,6 +1,6 @@
 namespace Oty.Interactivity.Entities;
 
-public class RadioButtonHandler
+public class RadioButtonHandler : IRadioButtonHandler
 {
     protected int _current = 1;
 
