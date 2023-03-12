@@ -75,7 +75,7 @@ public sealed class ComponentInteractivityBuilder
             throw new ArgumentException("Specified component cannot be a modal or an action row.", nameof(component));
         }
 
-        var invokationType = (ComponentInvokationType)component.Type;
+        var invokationType = component.Type;
 
         var componentKey = new ComponentInteractivityRequest.ComponentKey(component.CustomId, invokationType);
 
@@ -84,7 +84,7 @@ public sealed class ComponentInteractivityBuilder
         return this.AddTargetComponent(componentKey, componentInvoker);
     }
 
-    public ComponentInteractivityBuilder AddTargetComponent(string componentId, ComponentInvokationType type, ComponentInteractivityRequest.ComponentInteractivityInvoker? invoker)
+    public ComponentInteractivityBuilder AddTargetComponent(string componentId, ComponentType type, ComponentInteractivityRequest.ComponentInteractivityInvoker? invoker)
     {
         return this.AddTargetComponent(new()
         {
