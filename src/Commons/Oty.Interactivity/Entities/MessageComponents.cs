@@ -11,7 +11,7 @@ public class MessageComponents : IEquatable<MessageComponents>
 
     public IReadOnlyList<DiscordComponent[]> Components { get; }
 
-    public  IDiscordMessageBuilder MessageBuilder { get; }
+    public IDiscordMessageBuilder MessageBuilder { get; }
 
     public bool TryAddComponents(DiscordComponent[] components, [MaybeNullWhen(false)] out int? index)
     {
