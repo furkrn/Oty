@@ -2,7 +2,7 @@ namespace Oty.Interactivity.Entities;
 
 public class RadioButtonHandler : IRadioButtonHandler
 {
-    protected int _current = 1;
+    protected int _current;
 
     public RadioButtonHandler(IReadOnlyList<DiscordComponent> components, IDiscordMessageBuilder messageBuilder, int componentIndex)
     {
@@ -25,7 +25,7 @@ public class RadioButtonHandler : IRadioButtonHandler
 
     public int TargetComponentIndex { get; }
 
-    public virtual async Task HandleButtonSelections(ComponentInteractionCreateEventArgs eventArgs)
+    public virtual Task HandleButtonSelections(ComponentInteractionCreateEventArgs eventArgs)
     {
         int maxValue = this.Components.Count - 1;
         if (Interlocked.CompareExchange(ref this._current, 0, maxValue) == 0)
@@ -38,18 +38,31 @@ public class RadioButtonHandler : IRadioButtonHandler
 
         for (int i = 0; i < this.MessageBuilder.Components.Count; i++)
         {
+            var messageComponents = this.MessageBuilder.Components[i].Components;
+
             if (i == this.TargetComponentIndex)
             {
+                var listedComponents = messageComponents.ToList();
                 var targetComponent = this.Components[this._current];
+                var indexedComponent = listedComponents.Select((c, i) => new { Component = c, Index = i})
+                    .Where(a => a.Component.CustomId == targetComponent.CustomId)
+                    .FirstOrDefault();
 
-                interactionResponseBuilder.AddComponents(targetComponent);
+                listedComponents[indexedComponent.Index] = targetComponent;
+
+                interactionResponseBuilder.AddComponents(listedComponents);
             }
             else
             {
-                interactionResponseBuilder.AddComponents(this.MessageBuilder.Components[i].Components);
+                interactionResponseBuilder.AddComponents(messageComponents);
             }
         }
-        
-        await eventArgs.Interaction.CreateResponseAsync(InteractionResponseType.UpdateMessage, interactionResponseBuilder);
+
+        return this.CreateResponseAsync(eventArgs, interactionResponseBuilder);
+    }
+
+    protected virtual Task CreateResponseAsync(ComponentInteractionCreateEventArgs eventArgs, DiscordInteractionResponseBuilder interactionResponseBuilder)
+    {
+        return eventArgs.Interaction.CreateResponseAsync(InteractionResponseType.UpdateMessage, interactionResponseBuilder);
     }
 }
