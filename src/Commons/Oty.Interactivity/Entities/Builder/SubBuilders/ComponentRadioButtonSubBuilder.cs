@@ -125,15 +125,8 @@ public sealed class ComponentRadioButtonSubBuilder : IComponentCommandBuilder
 
         var radioButtonHandler = this._factory(this._components, components.MessageBuilder, index.Value);
 
-        return this._components.Select(c => KeyValuePair.Create(new ComponentInteractivityRequest.ComponentKey(c.CustomId, GetInvokationType(c.Type)),
-            new ComponentInteractivityRequest.ComponentInteractivityInvoker(c.CustomId, GetInvokationType(c.Type), radioButtonHandler.HandleButtonSelections)))
+        return this._components.Select(c => KeyValuePair.Create(new ComponentInteractivityRequest.ComponentKey(c.CustomId, c.Type),
+            new ComponentInteractivityRequest.ComponentInteractivityInvoker(c.CustomId, c.Type, radioButtonHandler.HandleButtonSelections)))
             .DistinctBy(c => c.Key);
-
-        static ComponentInvokationType GetInvokationType(ComponentType type)
-        {
-            return type is ComponentType.Button
-                ? ComponentInvokationType.Button
-                : ComponentInvokationType.SelectBox;
-        }
     }
 }

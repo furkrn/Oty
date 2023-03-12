@@ -126,9 +126,9 @@ public class ComponentPaginatorSubBuilder : IComponentCommandBuilder
 
         this._paginator.Pages = pages;
 
-        var selectBoxKey = new ComponentInteractivityRequest.ComponentKey(this._selectBoxCustomId, ComponentInvokationType.SelectBox);
+        var selectBoxKey = new ComponentInteractivityRequest.ComponentKey(this._selectBoxCustomId, ComponentType.StringSelect);
 
-        var selectBoxInvoker = new ComponentInteractivityRequest.ComponentInteractivityInvoker(this._selectBoxCustomId, ComponentInvokationType.SelectBox, this._selectBoxInvoker);
+        var selectBoxInvoker = new ComponentInteractivityRequest.ComponentInteractivityInvoker(this._selectBoxCustomId, ComponentType.StringSelect, this._selectBoxInvoker);
 
         commands.Add(new(selectBoxKey, selectBoxInvoker));
 

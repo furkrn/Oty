@@ -52,30 +52,19 @@ public sealed class ComponentInteractivityRequest : InteractivityRequest, IEquat
     [PublicAPI]
     public sealed class ComponentInteractivityInvoker
     {
-        public ComponentInteractivityInvoker(string targetComponentId, ComponentInvokationType type, Func<ComponentInteractionCreateEventArgs, Task>? caller)
-            : this(targetComponentId, caller)
-        {
-            this.ComponentInvokationType = type;
-        }
-
         public ComponentInteractivityInvoker(string targetComponentId, ComponentType componentType, Func<ComponentInteractionCreateEventArgs, Task>? caller)
-            : this(targetComponentId, caller)
-        {
-            if (componentType is (ComponentType.ActionRow or ComponentType.FormInput))
-            {
-                throw new ArgumentException("Specified Component Type can be only Button or Select", nameof(componentType));
-            }
-
-            this.ComponentInvokationType = (ComponentInvokationType)componentType;
-        }
-
-        private ComponentInteractivityInvoker(string targetComponentId, Func<ComponentInteractionCreateEventArgs, Task>? caller)
         {
             if (string.IsNullOrWhiteSpace(targetComponentId))
             {
                 throw new ArgumentException("Value cannot be null or whitespace.", nameof(targetComponentId));
             }
 
+            if (componentType is (ComponentType.ActionRow or ComponentType.FormInput))
+            {
+                throw new ArgumentException("Specified Component Type can be only Button or Select", nameof(componentType));
+            }
+
+            this.ComponentInvokationType = componentType;
             this.TargetComponentId = targetComponentId;
             this.Caller = caller;
         }
@@ -84,7 +73,7 @@ public sealed class ComponentInteractivityRequest : InteractivityRequest, IEquat
         public string TargetComponentId { get; }
 
         [PublicAPI]
-        public ComponentInvokationType ComponentInvokationType { get; }
+        public ComponentType ComponentInvokationType { get; }
 
         [PublicAPI]
         public Func<ComponentInteractionCreateEventArgs, Task>? Caller { get; }
@@ -95,11 +84,16 @@ public sealed class ComponentInteractivityRequest : InteractivityRequest, IEquat
     {
         private readonly string _targetComponentId;
 
-        public ComponentKey(string targetComponentId, ComponentInvokationType type)
+        public ComponentKey(string targetComponentId, ComponentType type)
         {
             if (string.IsNullOrWhiteSpace(targetComponentId))
             {
                 throw new ArgumentException("Value cannot be null or whitespace", nameof(this.TargetComponentId));
+            }
+
+            if (type is (ComponentType.ActionRow or ComponentType.FormInput))
+            {
+                throw new ArgumentException("Specified Component Type can be only Button or Select", nameof(type));
             }
 
             this._targetComponentId = targetComponentId;
@@ -125,7 +119,7 @@ public sealed class ComponentInteractivityRequest : InteractivityRequest, IEquat
         }
 
         [PublicAPI]
-        public ComponentInvokationType ComponentInvokationType { get; init; }
+        public ComponentType ComponentInvokationType { get; init; }
 
         public override bool Equals([NotNullWhen(true)] object? obj)
         {
@@ -159,7 +153,7 @@ public sealed class ComponentInteractivityRequest : InteractivityRequest, IEquat
             return new()
             {
                 TargetComponentId = data.CustomId,
-                ComponentInvokationType = (ComponentInvokationType)data.ComponentType,
+                ComponentInvokationType = data.ComponentType,
             };
         }
 
@@ -174,7 +168,7 @@ public sealed class ComponentInteractivityRequest : InteractivityRequest, IEquat
             return new()
             {
                 TargetComponentId = component.CustomId,
-                ComponentInvokationType = (ComponentInvokationType)component.Type
+                ComponentInvokationType = component.Type,
             };
         }
     }
