@@ -5,7 +5,7 @@ public sealed class ComponentRadioButtonSubBuilder : IComponentCommandBuilder
 {
     private readonly List<DiscordComponent> _components = new();
     
-    private Func<IReadOnlyList<DiscordComponent>, IDiscordMessageBuilder, int, RadioButtonHandler> _factory = (l, m, i) => new(l, m, i);
+    private Func<IReadOnlyList<DiscordComponent>, IDiscordMessageBuilder, int, IRadioButtonHandler> _factory = (l, m, i) => new RadioButtonHandler(l, m, i);
 
     [PublicAPI]
     public ComponentRadioButtonSubBuilder()
@@ -79,7 +79,7 @@ public sealed class ComponentRadioButtonSubBuilder : IComponentCommandBuilder
     }
 
     [PublicAPI]
-    public ComponentRadioButtonSubBuilder WithHandlerFactory(Func<IReadOnlyList<DiscordComponent>, IDiscordMessageBuilder, int, RadioButtonHandler> factory)
+    public ComponentRadioButtonSubBuilder WithHandlerFactory(Func<IReadOnlyList<DiscordComponent>, IDiscordMessageBuilder, int, IRadioButtonHandler> factory)
     {
         ArgumentNullException.ThrowIfNull(factory, nameof(factory));
         this._factory = factory;
@@ -102,14 +102,25 @@ public sealed class ComponentRadioButtonSubBuilder : IComponentCommandBuilder
 
         var firstComponent = this._components[0];
 
-        if (components.MessageBuilder.Components.SelectMany(c => c.Components).Any(c => c.CustomId == firstComponent.CustomId))
-        {
-            throw new InvalidOperationException("Provided message builder contains components with the same id.");
-        }
+        var messageComponents = components.MessageBuilder.Components.Select((c, i) => new { c.Components, Index = i })
+            .Where(c => c.Components.Any(com => com.CustomId == firstComponent.CustomId))
+            .ToArray();
 
-        if (!components.TryAddComponents(new[] { firstComponent }, out int? index))
+        int? index = 0;
+        if (messageComponents.Length is 1)
         {
-            throw new InvalidOperationException("Provided message builder cannot contain more components.");
+            index = messageComponents[0].Index;
+        }
+        else if (messageComponents.Length > 1)
+        {
+            throw new InvalidOperationException("Provided message builders contains more than 1 component with the same id.");
+        }
+        else if (messageComponents.Length < 0)
+        {
+            if (!components.TryAddComponents(new[] { firstComponent }, out index))
+            {
+                throw new InvalidOperationException("Provided message builder cannot contain more components.");
+            }
         }
 
         var radioButtonHandler = this._factory(this._components, components.MessageBuilder, index.Value);

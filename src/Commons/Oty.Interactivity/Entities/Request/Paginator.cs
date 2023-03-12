@@ -1,7 +1,7 @@
 ﻿namespace Oty.Interactivity.Entities;
 
 [PublicAPI]
-public class Paginator
+public class Paginator : IPaginator
 {
     [PublicAPI]
     public IReadOnlyList<InteractionPage> Pages { get; set; }

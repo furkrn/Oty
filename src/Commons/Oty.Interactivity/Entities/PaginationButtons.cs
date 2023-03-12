@@ -2,18 +2,24 @@
 
 public sealed class PaginationButtons
 {
-    public DiscordButtonComponent FirstPageButton { get; init; }
+    public required DiscordButtonComponent FirstPageButton { get; init; }
 
-    public DiscordButtonComponent BackPageButton { get; init; }
+    public required DiscordButtonComponent BackPageButton { get; init; }
 
-    public DiscordButtonComponent NextPageButton { get; init; }
+    public DiscordButtonComponent? MiddleButton { get; init; }
 
-    public DiscordButtonComponent LastPageButton { get; init; }
+    public required DiscordButtonComponent NextPageButton { get; init; }
+
+    public required DiscordButtonComponent LastPageButton { get; init; }
 
     public IEnumerable<DiscordButtonComponent> GetButtonsAsCollection()
     {
         yield return this.FirstPageButton;
         yield return this.BackPageButton;
+        if (this.MiddleButton is not null)
+        {
+            yield return this.MiddleButton;
+        }
         yield return this.NextPageButton;
         yield return this.LastPageButton;
     }
@@ -24,6 +30,10 @@ public sealed class PaginationButtons
         {
             yield return new DiscordButtonComponent(this.FirstPageButton).Disable();
             yield return new DiscordButtonComponent(this.BackPageButton).Disable();
+            if (this.MiddleButton is not null)
+            {
+                yield return this.MiddleButton;
+            }
             yield return new DiscordButtonComponent(this.NextPageButton).Enable();
             yield return new DiscordButtonComponent(this.LastPageButton).Enable();
         }
@@ -31,6 +41,10 @@ public sealed class PaginationButtons
         {
             yield return new DiscordButtonComponent(this.FirstPageButton).Enable();
             yield return new DiscordButtonComponent(this.BackPageButton).Enable();
+            if (this.MiddleButton is not null)
+            {
+                yield return this.MiddleButton;
+            }
             yield return new DiscordButtonComponent(this.NextPageButton).Enable();
             yield return new DiscordButtonComponent(this.LastPageButton).Enable();
         }
@@ -38,6 +52,10 @@ public sealed class PaginationButtons
         {
             yield return new DiscordButtonComponent(this.FirstPageButton).Enable();
             yield return new DiscordButtonComponent(this.BackPageButton).Enable();
+            if (this.MiddleButton is not null)
+            {
+                yield return this.MiddleButton;
+            }
             yield return new DiscordButtonComponent(this.NextPageButton).Disable();
             yield return new DiscordButtonComponent(this.LastPageButton).Disable();
         }

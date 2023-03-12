@@ -1,17 +1,14 @@
 namespace Oty.Interactivity.Entities;
 
-public sealed class ComponentPaginatorSubBuilder<TSource> : IComponentCommandBuilder
+public class ComponentPaginatorSubBuilder : IComponentCommandBuilder
 {
-    private readonly IEnumerable<TSource> _items;
+    private readonly IEnumerable<DiscordSelectComponentOption> _options;
 
-    private Func<TSource, SelectBoxItem> _selector;
+    private readonly List<DiscordComponent[]>? _afterComponents = new();
 
     private Func<ComponentInteractionCreateEventArgs, Task>? _selectBoxInvoker;
 
     private Paginator _paginator = new Paginator();
-
-    private DiscordInteractionResponseBuilder _responseBuilder = new DiscordInteractionResponseBuilder()
-        .WithContent("Paginate using buttons below:");
 
     private string _selectBoxCustomId = "pagination_select";
 
@@ -23,49 +20,57 @@ public sealed class ComponentPaginatorSubBuilder<TSource> : IComponentCommandBui
         LastPageButton = new(ButtonStyle.Primary, "last", ">>|"),
     };
 
-    public ComponentPaginatorSubBuilder(IEnumerable<TSource> items)
+    public ComponentPaginatorSubBuilder(IEnumerable<DiscordSelectComponentOption> options)
     {
-        this._items = items ?? throw new ArgumentNullException(nameof(items));
+        this._options = options;
     }
 
-    // TODO : Use properties as well...
-
-    public ComponentPaginatorSubBuilder<TSource> WithSelectBoxItem(Func<TSource, SelectBoxItem> selectBoxItem)
+    public static ComponentPaginatorSubBuilder CreateGenericBuilder<T>(IEnumerable<T> items, Func<T, DiscordSelectComponentOption> selector)
     {
-        this._selector = selectBoxItem ?? throw new ArgumentNullException(nameof(selectBoxItem));
+        ArgumentNullException.ThrowIfNull(items, nameof(items));
+        ArgumentNullException.ThrowIfNull(selector, nameof(selector));
+
+        return new ComponentPaginatorSubBuilder(items.Select(selector));
+    }
+
+    public ComponentPaginatorSubBuilder AddComponentsAfterSelectBox(params DiscordComponent[] componentsArray)
+    {
+        ArgumentNullException.ThrowIfNull(componentsArray, nameof(componentsArray));
+
+        this._afterComponents.Add(componentsArray);
 
         return this;
     }
+    
+    public ComponentPaginatorSubBuilder AddComponentsAfterSelectBox(IEnumerable<DiscordComponent> components)
+    {
+        ArgumentNullException.ThrowIfNull(components, nameof(components));
 
-    public ComponentPaginatorSubBuilder<TSource> OnSelectBoxSelection(Func<ComponentInteractionCreateEventArgs, Task> selectBoxInvoker)
+        return this.AddComponentsAfterSelectBox(componentsArray: components.ToArray());
+    }
+
+    public ComponentPaginatorSubBuilder OnSelectBoxSelection(Func<ComponentInteractionCreateEventArgs, Task> selectBoxInvoker)
     {
         this._selectBoxInvoker = selectBoxInvoker;
 
         return this;
     }
 
-    public ComponentPaginatorSubBuilder<TSource> WithPaginator(Paginator paginator)
+    public ComponentPaginatorSubBuilder WithPaginator(Paginator paginator)
     {
         this._paginator = paginator ?? throw new ArgumentNullException(nameof(paginator));
 
         return this;
     }
 
-    public ComponentPaginatorSubBuilder<TSource> WithBaseMessageBuilder(DiscordInteractionResponseBuilder responseBuilder)
-    {
-        this._responseBuilder = responseBuilder ?? throw new ArgumentNullException(nameof(responseBuilder));
-
-        return this;
-    }
-
-    public ComponentPaginatorSubBuilder<TSource> WithPaginationButtons(PaginationButtons buttons)
+    public ComponentPaginatorSubBuilder WithPaginationButtons(PaginationButtons buttons)
     {
         this._buttons = buttons ?? throw new ArgumentNullException(nameof(buttons));
 
         return this;
     }
 
-    public ComponentPaginatorSubBuilder<TSource> WithSelectBoxCustomId(string customId)
+    public ComponentPaginatorSubBuilder WithSelectBoxCustomId(string customId)
     {
         if (string.IsNullOrWhiteSpace(customId))
         {
@@ -79,37 +84,40 @@ public sealed class ComponentPaginatorSubBuilder<TSource> : IComponentCommandBui
 
     public IEnumerable<KeyValuePair<ComponentInteractivityRequest.ComponentKey, ComponentInteractivityRequest.ComponentInteractivityInvoker?>> Build(MessageComponents? components)
     {
-        if (this._selector == null)
+        int messageRowComponentCount = 2 + this._afterComponents.Count;
+        if (components.MessageBuilder.Components.Count + messageRowComponentCount > 5)
         {
-            throw new InvalidOperationException("Selector cannot be null!");
+            throw new InvalidOperationException("");
         }
 
-        var selectorItems = this._items.Select(this._selector)
-            .Chunk(25)
+        var selectorItems = this._options.Chunk(25)
             .ToArray();
 
         var pages = new List<InteractionPage>();
 
         for (uint i = 0; i < selectorItems.Length; i++)
         {
-            var selectBoxItems = selectorItems[i].Select(s => new DiscordSelectComponentOption(s.SelectBoxItemLabel, s.SelectBoxItemId));
+            var selectBox = new DiscordSelectComponent(this._selectBoxCustomId, null, selectorItems[i]);
 
-            var selectBox = new DiscordSelectComponent(this._selectBoxCustomId, null, selectBoxItems);
-
-            var builder = Clone(this._responseBuilder, out var rowComponents)
+            var builder = new DiscordInteractionResponseBuilder(components.MessageBuilder)
                 .AddComponents(selectBox);
-
-            foreach (var rowComponent in rowComponents)
-            {
-                builder.AddComponents(rowComponent.Components);
-            }
 
             if (selectorItems.Length > 1)
             {
                 builder.AddComponents(this._buttons.GetButtonsAsCollectionWithCondition(i, (uint)selectorItems.Length));
             }
+            else if (this._buttons.MiddleButton is not null)
+            {
+                builder.AddComponents(this._buttons.MiddleButton);
+            }
 
             var page = new InteractionPage(builder);
+
+            if (i is 0)
+            {
+                components.TryAddComponents(new[] { selectBox }, out _);
+                components.TryAddComponents(this._buttons.GetButtonsAsCollection().ToArray(), out _);
+            }
 
             pages.Add(page);
         }
@@ -130,30 +138,5 @@ public sealed class ComponentPaginatorSubBuilder<TSource> : IComponentCommandBui
         }
 
         return commands;
-    }
-
-    private static DiscordInteractionResponseBuilder Clone(DiscordInteractionResponseBuilder responseBuilder, out IEnumerable<DiscordActionRowComponent> components)
-    {
-        var newResponseBuilder = new DiscordInteractionResponseBuilder()
-            .AddAutoCompleteChoices(responseBuilder.Choices)
-            .AddEmbeds(responseBuilder.Embeds)
-            .AddFiles(responseBuilder.Files.ToDictionary(f => f.FileName, f => f.Stream))
-            .AddMentions(responseBuilder.Mentions)
-            .AsEphemeral(responseBuilder.IsEphemeral)
-            .WithContent(responseBuilder.Content)
-            .WithTTS(responseBuilder.IsTTS);
-
-        if (!string.IsNullOrWhiteSpace(responseBuilder.Title))
-        {
-            newResponseBuilder.WithTitle(responseBuilder.Title);
-        }
-
-        if (!string.IsNullOrWhiteSpace(responseBuilder.CustomId))
-        {
-            newResponseBuilder.WithCustomId(responseBuilder.CustomId);
-        }
-
-        components = responseBuilder.Components;
-        return newResponseBuilder;
     }
 }
